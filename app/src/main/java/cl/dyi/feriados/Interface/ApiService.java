@@ -10,4 +10,6 @@ public interface ApiService {
 
     @GET("2020")
     Call<List<Feriado>> getFeriados();
+
+    
 }
