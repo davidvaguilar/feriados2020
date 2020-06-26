@@ -30,4 +30,23 @@ public class Feriado {
         return leyes;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setIrrenunciable(int irrenunciable) {
+        this.irrenunciable = irrenunciable;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setLeyes(ArrayList<Ley> leyes) {
+        this.leyes = leyes;
+    }
 }

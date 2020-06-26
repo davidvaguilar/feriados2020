@@ -13,22 +13,22 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import cl.dyi.feriados.Model.Feriado;
+import cl.dyi.feriados.Model.Specialty;
 import cl.dyi.feriados.R;
 
-public class FeriadoAdapter extends ArrayAdapter<Feriado> {
+public class FeriadoAdapter extends ArrayAdapter<Specialty> {
 
-    private ArrayList<Feriado> feriadoList;
+    private ArrayList<Specialty> specialtyList;
     private Context context;
     private int layoutId;
 
 
-    public FeriadoAdapter(@NonNull Context context, int resource, @NonNull List<Feriado> feriados) {
-        super(context, resource, feriados);
+    public FeriadoAdapter(@NonNull Context context, int resource, @NonNull List<Specialty> specialties) {
+        super(context, resource, specialties);
 
         this.context = context;
         this.layoutId = resource;
-        this.feriadoList = new ArrayList<>(feriados);
+        this.specialtyList = new ArrayList<>(specialties);
     }
 
     @NonNull
@@ -49,13 +49,11 @@ public class FeriadoAdapter extends ArrayAdapter<Feriado> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Feriado feriado = feriadoList.get(position);
-        viewHolder.fecha.setText(feriado.getFecha());
-        viewHolder.nombre.setText(feriado.getNombre());
+        Specialty specialty = specialtyList.get(position);
+        viewHolder.fecha.setText(specialty.getId());
+        viewHolder.nombre.setText(specialty.getName());
         return convertView;
         //return super.getView(position, convertView, parent);
-
-
     }
 
     private class ViewHolder{

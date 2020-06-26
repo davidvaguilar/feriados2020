@@ -10,6 +10,7 @@ import java.util.List;
 
 import cl.dyi.feriados.Interface.ApiService;
 import cl.dyi.feriados.Model.Feriado;
+import cl.dyi.feriados.Model.Specialty;
 import cl.dyi.feriados.Util.FeriadoAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,14 +30,14 @@ public class FeriadosActivity extends AppCompatActivity {
 
     private void getFeriados(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://apis.digital.gob.cl/fl/feriados/")
+                .baseUrl("http://cita.dyi.cl/api/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<List<Feriado>> call = apiService.getFeriados();
-        call.enqueue(new Callback<List<Feriado>>() {
+        Call<List<Specialty>> call = apiService.getSpecialities();
+        call.enqueue(new Callback<List<Specialty>>() {
             @Override
-            public void onResponse(Call<List<Feriado>> call, Response<List<Feriado>> response) {
+            public void onResponse(Call<List<Specialty>> call, Response<List<Specialty>> response) {
                 if( !response.isSuccessful() ){
                     //jsonText.setText("Codigo de Error:"+response.code());
                     Toast.makeText(FeriadosActivity.this, "Codigo de Error: "+response.code(), Toast.LENGTH_SHORT);
@@ -44,8 +45,8 @@ public class FeriadosActivity extends AppCompatActivity {
                 }
 
                 ListView feriado_list_view = findViewById(R.id.feriado_list_view);
-                List<Feriado> feriados = response.body();
-                FeriadoAdapter feriadoAdapter = new FeriadoAdapter(FeriadosActivity.this, R.layout.feriado_list_item, feriados);
+                List<Specialty> specialties = response.body();
+                FeriadoAdapter feriadoAdapter = new FeriadoAdapter(FeriadosActivity.this, R.layout.feriado_list_item, specialties);
                 feriado_list_view.setAdapter(feriadoAdapter);
 
                 //  for(Feriado feriado: feriados){
@@ -66,7 +67,7 @@ public class FeriadosActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Feriado>> call, Throwable t) {
+            public void onFailure(Call<List<Specialty>> call, Throwable t) {
                 //jsonText.setText(t.getMessage());
                 Toast.makeText(FeriadosActivity.this, t.getMessage(), Toast.LENGTH_SHORT);
             }
