@@ -42,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
                 login();
             }
         });
+
+
+
+    }
+
+    public void GoToRegister(View view) {
+        Intent i = new Intent(this, RegisterActivity.class );
+        startActivity(i);
     }
 
     public void login(){
@@ -67,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     LoginResponse loginResponse = response.body();
                     if (loginResponse.getSuccess()) {
-                        Toast.makeText(MainActivity.this, "Login Exito", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, loginResponse.getJwt(), Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(MainActivity.this, "Las credenciales son incorrectas", Toast.LENGTH_LONG).show();
                     }

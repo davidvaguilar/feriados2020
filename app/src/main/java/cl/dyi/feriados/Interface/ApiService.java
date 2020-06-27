@@ -19,4 +19,12 @@ public interface ApiService {
             @Query("email") String email,
             @Query("password")String password
     );
+
+    @POST("register")
+    Call<LoginResponse> postRegister(
+            @Query("name") String name,
+            @Query("email") String email,
+            @Query("password") String password,
+            @Query("password_confirmation") String password_confirmation
+    );
 }
