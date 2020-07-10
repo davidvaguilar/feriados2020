@@ -21,13 +21,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:onClick="feriados"
-        android:text="Lista de Feriados" />
+        android:text="Editar Perfil" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Registro" />
+        android:text="Citas Medicas" />
 
     <Button
         android:id="@+id/btnLogout"

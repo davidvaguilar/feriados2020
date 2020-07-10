@@ -2,6 +2,9 @@ package cl.dyi.feriados;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,8 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Por Favor ingrese llene todos los campos", Toast.LENGTH_LONG).show();
             return;
         }
-      //  Toast.makeText(this, confirm, Toast.LENGTH_LONG).show();
-        if( password.equals(confirm) ){
+     //   Toast.makeText(this, password.equals(confirm), Toast.LENGTH_LONG).show();
+        if( !password.equals(confirm) ){
             Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_LONG).show();
             return;
         }
@@ -72,8 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     LoginResponse loginResponse = response.body();
                     if (loginResponse.getSuccess()) {
-                        Toast.makeText(RegisterActivity.this, "Registro Exitoso", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(RegisterActivity.this, loginResponse.getUser().toString(), Toast.LENGTH_LONG).show();
+                        finish();
 
                     } else {
                         Toast.makeText(RegisterActivity.this, "Ocurrio un error con el registro", Toast.LENGTH_LONG).show();
@@ -86,6 +89,8 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
+
+
 }

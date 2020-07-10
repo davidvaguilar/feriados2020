@@ -2,7 +2,9 @@ package cl.dyi.feriados;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -75,7 +77,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                     LoginResponse loginResponse = response.body();
                     if (loginResponse.getSuccess()) {
-                        Toast.makeText(MainActivity.this, loginResponse.getJwt(), Toast.LENGTH_LONG).show();
+
+                        createSessionPreference( loginResponse.getJwt() );
+                        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(MainActivity.this, "Las credenciales son incorrectas", Toast.LENGTH_LONG).show();
                     }
@@ -88,8 +94,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
+
+    public void createSessionPreference(String jwt){
+        SharedPreferences preferences = getSharedPreferences("credencials", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("jwt", jwt);
+        editor.commit();
+    }
+
+
 
 }

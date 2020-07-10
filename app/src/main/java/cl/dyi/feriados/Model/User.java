@@ -1,5 +1,7 @@
 package cl.dyi.feriados.Model;
 
+import androidx.annotation.NonNull;
+
 public class User {
     private int id;
     private String name;
@@ -35,5 +37,11 @@ public class User {
 
     public String getRole() {
         return role;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "El usuario "+this.name+" ha sido registrado.";
     }
 }
